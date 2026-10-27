@@ -26,6 +26,9 @@ public class App {
         String banner1 = FigletFont.convertOneLine(FONT_PATH, "THE LEGEND");
         String banner2 = FigletFont.convertOneLine(FONT_PATH, "       OF JAVA");
 
+        System.out.print("\u001B[0m\u001B[H\u001B[2J");
+        System.out.flush();
+
         while (true) {
             System.out.print(COLORS[i]);
             System.out.println(banner1);
@@ -51,5 +54,7 @@ public class App {
           
         }
         scanner.close();
+        System.out.print("\u001B[0m\u001B[H\u001B[2J");
+        System.out.flush();
     }
 }
