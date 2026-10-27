@@ -6,12 +6,47 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import com.github.lalyos.jfiglet.FigletFont;
-
 public class App {
+    public static void main(String[] args) throws IOException, InterruptedException {
+      final boolean SHOULD_FLASH = true;
+      displayBanner(SHOULD_FLASH);
+    }
 
-    public static void main(String[] args) throws IOException {
-      final var font = App.class.getResourceAsStream("/larry3d.flf");
-      String banner = FigletFont.convertOneLine(font, "THE LEGEND OF JAVA");
-      System.out.println(banner);
+    public static void displayBanner(boolean shouldFlash) throws IOException, InterruptedException {
+        final String FONT_PATH = "classpath:/3d.flf";
+        Scanner scanner = new Scanner(System.in);
+        final String[] COLORS = {
+            "\u001B[33m", // yellow
+            "\u001B[32m", // green
+            "\u001B[36m", // cyan
+            "\u001B[37m"  // white
+        };
+
+        int i = 0;
+        String banner1 = FigletFont.convertOneLine(FONT_PATH, "THE LEGEND");
+        String banner2 = FigletFont.convertOneLine(FONT_PATH, "       OF JAVA");
+
+        while (true) {
+            System.out.print(COLORS[i]);
+            System.out.println(banner1);
+            System.out.println(banner2);
+            System.out.print("\u001B[0m");
+
+            System.out.print("Press [enter] to continue...");
+            if (System.in.available() > 0) {
+              scanner.nextLine();
+              break;
+            }
+
+
+            Thread.sleep(100);
+            System.out.print("\u001B[0m\u001B[H\u001B[2J");
+            System.out.flush();
+            
+            if (shouldFlash) {
+              i = (i + 1) % COLORS.length;
+            }
+        }
+        scanner.close();
     }
 }
