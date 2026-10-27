@@ -32,7 +32,8 @@ public class App {
             System.out.println(banner2);
             System.out.print("\u001B[0m");
 
-            System.out.print("Press [enter] to continue...");
+            System.out.println();
+            System.out.print("                                Press [enter] to continue...");
             if (!shouldFlash) {
               scanner.nextLine();
               break;
@@ -43,7 +44,7 @@ public class App {
               break;
             }
 
-            Thread.sleep(500);
+            Thread.sleep(750);
             System.out.print("\u001B[0m\u001B[H\u001B[2J");
             System.out.flush();
             i = (i + 1) % COLORS.length;
