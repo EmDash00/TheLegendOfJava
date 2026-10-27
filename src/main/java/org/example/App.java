@@ -33,19 +33,21 @@ public class App {
             System.out.print("\u001B[0m");
 
             System.out.print("Press [enter] to continue...");
+            if (!shouldFlash) {
+              scanner.nextLine();
+              break;
+            }
+
             if (System.in.available() > 0) {
               scanner.nextLine();
               break;
             }
 
-
-            Thread.sleep(100);
+            Thread.sleep(500);
             System.out.print("\u001B[0m\u001B[H\u001B[2J");
             System.out.flush();
-            
-            if (shouldFlash) {
-              i = (i + 1) % COLORS.length;
-            }
+            i = (i + 1) % COLORS.length;
+          
         }
         scanner.close();
     }
