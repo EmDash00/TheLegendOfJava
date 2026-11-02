@@ -29,7 +29,7 @@ git clone https://github.com/EmDash00/TheLegendOfJava.git
 
 ## Configure VSCode
 
-Then, open the task0 folder in VSCode.
+Then, open the task0 template folder in VSCode located under `task0/template`.
 
 <img src="images/VSCode_open_folder.png" alt="Description of the image" width="400">
 
@@ -97,9 +97,12 @@ I am a multiline string.
 Now it's your turn. Use `System.out.println()` to add the following intro text after the line that says `displayBanner()`.
 
 ```
+The LEGEND
+==========
+
 Long ago, the programming nations lived in harmony, but everything changed when
 the HACKERs attacked. Only the DEVELOPER, master of all programming languages, 
-could stop them. But when the world needed them most, the vanished.
+could stop them. But when the world needed them most, they vanished.
 
 Without the DEVELOPER to keep the peace, the HACKERs took over and the world, 
 descended into DARK AGE. 
@@ -110,15 +113,23 @@ To this day, the people still believe that the DEVELOPER will return.
 Only time will tell if they do...
 ```
 
+If correct, after pressing "enter" you should see the LEGEND printed out.
+
+<img src="images/LEGEND.png" alt="Description of the image" width="800">
+
+
 <details>
 <summary> Solution </summary> 
 
 ```java
 
 System.out.println("""
+The LEGEND
+==========
+
 Long ago, the programming nations lived in harmony, but everything changed when
 the HACKERs attacked. Only the DEVELOPER, master of all programming languages, 
-could stop them. But when the world needed them most, the vanished.
+could stop them. But when the world needed them most, they vanished.
 
 Without the DEVELOPER to keep the peace, the HACKERs took over and the world, 
 descended into DARK AGE. 
@@ -132,3 +143,10 @@ Only time will tell if they do...
 ```
 
 </details>  <br>
+
+## End of Task 1
+
+| You learned            | What it is                   |
+| ---------------------- | ---------------------------- |
+| Strings                | Text in a computer           |
+| `System.out.println()` | Prints text to the terminal. |
