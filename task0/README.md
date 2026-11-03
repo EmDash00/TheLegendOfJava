@@ -54,6 +54,11 @@ Double click on the `Keybinding` column then type ``Shift + Ctrl/Cmd + ` ``. Pre
 
 <img src="images/Set Keybind.png" alt="Description of the image" width="800">
 
+Next, install the EditorConfig extension by searching in the extensions marketplace.
+
+<img src="images/EditorConfig.png" alt="Description of the image" width="400">
+
+
 ## Running the Code
 
 Maximize the terminal using ``Shift + Ctrl/Cmd + ` ``. Then to run the code use:
