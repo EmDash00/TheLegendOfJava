@@ -34,8 +34,8 @@ There are a few different types of variables in Java that you should become fami
 >String myName = "Gene Eric";
 >```
 
->[!NOTE]
-> The equal sign in Java should be read as "store". When you use `=`, the data on the right hand side of the equal sign gets stored in the variable on the left hand side. We will learn later how to check if things are equal.
+>[!INFO]
+> The equal sign in Java should be read as "store". When you use `=`, the data on the right hand side of the equal sign gets stored in the variable on the left hand side. We will learn later how to check if things are equal. This process of storing a value in a variable is called *assignment* or "assigning" the variable a value.
 
 ## Java Scanner
 
@@ -44,8 +44,8 @@ If all we could do was output, computer programs would be quite boring. Now let'
 ```java
 import java.util.Scanner;  // Import the Scanner class
 
-var scanner = new Scanner();
-String input = scanner.getNextLine(); // get a line of input and store it.
+var scanner = new Scanner(System.in);
+String input = scanner.nextLine(); // get a line of input and store it.
 
 scanner.close(); // make sure to close it!
 ```
@@ -81,10 +81,10 @@ Now let's use the `Scanner` to actually store the user's input via `Scanner.next
 <summary> Solution </summary> 
 
 ```java
-var scanner = new Scanner()
+var scanner = new Scanner(System.in)
 System.out.println("Traveler, I have not seen you before. What is your name?");
 System.out.print("Your name: ");
-String playerName = scanner.getNextLine();
+String playerName = scanner.nextLine();
 
 scanner.close();
 ```
@@ -101,11 +101,62 @@ Now let's use the player's name to greet them by saying: `"It is nice to meet yo
 <summary> Solution </summary> 
 
 ```java
-var scanner = new Scanner()
+var scanner = new Scanner(System.in);
 System.out.println("Traveler, I have not seen you before. What is your name?");
 System.out.print("Your name: ");
-String playerName = scanner.getNextLine();
+String playerName = scanner.nextLine();
 System.out.println("It is nice to meet you, " + playerName + ".");
+
+scanner.close();
+```
+
+</details>  <br>
+
+## Parsing
+
+In order to convert text into numeric data, we need to perform a process known as *parsing*. There are two types of parsing to know:
+    - `Integer.parseInt()` - Turns a `String` into an `int`
+    - `Double.parseDouble()` - Turns a `String` into a `double`
+
+>[!WARNING]
+> Text that can't be parsed gives an error. Make sure your text actually represents an integer or a double before converting it.
+
+Examples:
+
+```java
+    int a = Integer.parseInt("1"); // a is now 1.
+    double b = Double.parseInt("0.5"); // b is now 0.5
+```
+
+This will be helpful for creating a character, which will we do next time. For now we'll end by having a character ask the player how far they've traveled. Prompt the player the following:
+
+```
+[player name], how many miles have you traveled?
+> [cursor here]
+```
+
+Make sure to include the right arrow! Then use the scanner to get the player's input and try to interpret that as number. Then say:
+
+```
+Oh, you've travelled [distance] miles..?
+```
+
+>[!TIP]
+> You can use `+` to add numbers to strings too. `"age: " + 16` gives the string `"age: 16"`.
+
+<details>
+<summary> Solution </summary> 
+
+```java
+var scanner = new Scanner(System.in);
+// ...
+// After it is nice to meet you
+
+System.out.println(playerName + ", how many miles have you travelled?");
+System.out.print("> ");
+String input = scanner.getNextLine();
+double distance = Double.parseDouble(input);
+System.out.println("Oh, you've travelled " + distance + " miles..?");
 
 scanner.close();
 ```
