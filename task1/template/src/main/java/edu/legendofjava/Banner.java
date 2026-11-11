@@ -66,7 +66,6 @@ public class Banner {
             i = (i + 1) % COLORS.length;
           
         }
-        scanner.close();
         System.out.print("\u001B[0m\u001B[H\u001B[2J");
         System.out.flush();
     }
