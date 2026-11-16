@@ -82,7 +82,7 @@ flowchart TD
     Q -- No --> D([Exit the loop])
 ```
 
->[!INFO]
+>[!NOTE]
 >If the condition is not true the first time it is checked for a `while` loop, the loop never runs. This can be useful sometimes.
 
 >[!WARNING]
@@ -106,4 +106,251 @@ catch (NumberFormatException e) {
 }
 ```
 
+## Character creation
 
+Combining these three control elements will allow us to create a character creation tool. Most RPGs allow the player to select a distribution of traits. We'll be using the DnD 5e traits here, which has traits:
+- Strength
+- Dexterity
+- Constitution
+- Intelligence
+- Wisdom
+- Charisma
+
+For this game, we will give the player 60 skill points to assign. Players will be given the option to assign skill points in the order I gave in the list above. When they assign skillpoints, the total number of *remaining points* they have goes down. They can only assign up to the points they have remaining to a trait. For example: player assigns 50 points to strength and has 10 points remaining to use for all other remaining traits. Once all traits have been assigned, the creator should ask the player if they are satisfied. If they are, satisfied, the creation finishes; otherwise, the creator restarts. 
+
+Example behavior:
+
+```
+Tell be me about yourself.
+Strength (60 points remaining): 15
+Dexterity (45 points remaining): 15
+Constitution (30 points remaining): 5
+Intelligence (25 points remaining): 15
+Wisdom (10 points remaining): 5
+Charisma (5 points remaining): 5
+
+Your stats:
+Strength: 15    Dexterity: 15   Constitution: 5     Intelligence: 15    Wisdom: 5   Charisma: 5
+
+Are you satisfied with your character? (y/n): y
+```
+
+Let's get started. Below the last line of code you previously wrote before `scanner.close()` we need to make variables for each of the skillpoints. The skillpoints are integers. Remember, to make a variable you can use `[type of variable] [name of variable]`.
+
+Next, we can make a loop obtain the user's desired skillpoints. For strength it looks like this:
+
+```java
+System.out.println("Tell me about yourself.");
+
+while (true) {
+    System.out.print("Strength (60 points remaining): ");
+    String input = scanner.nextLine();
+    try {
+        int assignment = Integer.parseInt(input);
+        if (assignment >= skillPointsRemaining) {
+            continue;
+        }
+        strength = assignment;
+        skillPointsRemaining -= assignment;
+        break;
+    }
+    catch (NumberFormatException e) {
+        
+    }
+}   
+```
+
+>[!NOTE]
+`while (true)` loops forever normally.
+
+>[!NOTE]
+>`break` breaks you out of a loop and `continue` forcibly continues it from the top. The try catch block tries to convert the string input. If an error happens or you try to assignment it will just ask again; otherwise, it will break out of the loop.
+
+>[!NOTE]
+`a -= b` is a quick way to write `a = a - b`. There are variants like `+=`, `*=` and `/=` as well.
+
+
+We'll need to do this for the next few stats. Make sure you make a variable also to keep track of the total remaining skill points called `skillPointsRemaining`. Make sure you change the number of skillpoints remaining and change the print for each dialogue. We can do this just by repeating the code but changing the print for each skill and what skill is assigned to.
+
+<details>
+<summary> Solution </summary> 
+
+```java
+System.out.println("Tell me about yourself.");
+
+while (true) {
+    System.out.print("Strength (60 points remaining): ");
+    String input = scanner.nextLine();
+    try {
+        int assignment = Integer.parseInt(input);
+        if (assignment >= skillPointsRemaining) {
+            continue;
+        }
+        strength = assignment;
+        skillPointsRemaining -= assignment;
+        break;
+    }
+    catch (NumberFormatException e) {
+        
+    }
+}   
+
+while (true) {
+    System.out.print("Dexterity " + skillPointsRemaining + " points remaining): ");
+    String input = scanner.nextLine();
+    try {
+        int assignment = Integer.parseInt(input);
+        if (assignment >= skillPointsRemaining) {
+            continue;
+        }
+        dexterity = assignment;
+        skillPointsRemaining -= assignment;
+        break;
+    }
+    catch (NumberFormatException e) {
+        
+    }
+}  
+
+while (true) {
+    System.out.print("Constitution " + skillPointsRemaining + " points remaining): ");
+    String input = scanner.nextLine();
+    try {
+        int assignment = Integer.parseInt(input);
+        if (assignment >= skillPointsRemaining) {
+            continue;
+        }
+        constitution = assignment;
+        skillPointsRemaining -= assignment;
+        break;
+    }
+    catch (NumberFormatException e) {
+        
+    }
+}
+
+while (true) {
+    System.out.print("Intelligence " + skillPointsRemaining + " points remaining): ");
+    String input = scanner.nextLine();
+    try {
+        int assignment = Integer.parseInt(input);
+        if (assignment >= skillPointsRemaining) {
+            continue;
+        }
+        intelligence = assignment;
+        skillPointsRemaining -= assignment;
+        break;
+    }
+    catch (NumberFormatException e) {
+        
+    }
+}
+
+while (true) {
+    System.out.print("Wisdom " + skillPointsRemaining + " points remaining): ");
+    String input = scanner.nextLine();
+    try {
+        int assignment = Integer.parseInt(input);
+        if (assignment >= skillPointsRemaining) {
+            continue;
+        }
+        wisdom = assignment;
+        skillPointsRemaining -= assignment;
+        break;
+    }
+    catch (NumberFormatException e) {
+        
+    }
+}
+
+while (true) {
+    System.out.print("Charisma " + skillPointsRemaining + " points remaining): ");
+    String input = scanner.nextLine();
+    try {
+        int assignment = Integer.parseInt(input);
+        if (assignment >= skillPointsRemaining) {
+            continue;
+        }
+        charisma = assignment;
+        skillPointsRemaining -= assignment;
+        break;
+    }
+    catch (NumberFormatException e) {
+        
+    }
+}
+```
+</details>  <br>
+
+Finally, we just print out the assigned statline with tabs bewteen each stat and ask if the user is satisfied. Use a loop to check if the user entered a `y` or `n` and repeat the question otherwise.
+
+>[!NOTE]
+>Checking strings is a little differen than the rest of the variable types. To check if two strings are equal we do `str.equals("equal")`. This checks if string `str` is equal to the string `"equal"`.
+
+<details>
+<summary> Solution </summary> 
+
+```java
+System.out.println("Your stats:");
+System.out.println("Strength: " + strength + "\tDexterity: " + dexterity + "\tConstitution: " + constitution + "\tIntelligence: " + intelligence + "\tWisdom: " + wisdom + "\tCharisma: " + charisma);
+System.out.println();
+
+String yn;
+while (true) {
+    System.out.print("Are you satisfied with your stats? (y/n):");
+    yn = scanner.nextLine();
+
+    if (yn.equals("y") || yn.equals("n")) {
+        break;
+    }
+}
+```
+</details>
+
+To make the entire character assignment repeat, we can just wrap the entire thing in a `do ... while` loop. Make a boolean variable called `assigningStats` at the top then set it to true if yn is `"n"` and false if yn is `"y"`.
+
+<details>
+<summary> Solution </summary> 
+
+```java
+System.out.println("Tell me about yourself.");
+
+boolean assigningStats;
+do {
+    while (true) {
+        System.out.print("Strength (60 points remaining): ");
+        String input = scanner.nextLine();
+        try {
+            int assignment = Integer.parseInt(input);
+            if (assignment >= skillPointsRemaining) {
+                continue;
+            }
+            strength = assignment;
+            skillPointsRemaining -= assignment;
+            break;
+        }
+        catch (NumberFormatException e) {
+            
+        }
+    }   
+
+    // other stats...
+
+    System.out.println("Your stats:");
+    System.out.println("Strength: " + strength + "\tDexterity: " + dexterity + "\tConstitution: " + constitution + "\tIntelligence: " + intelligence + "\tWisdom: " + wisdom + "\tCharisma: " + charisma);
+    System.out.println();
+
+    String yn;
+    while (true) {
+        System.out.print("Are you satisfied with your stats? (y/n):");
+        yn = scanner.nextLine();
+
+        if (yn.equals("y") || yn.equals("n")) {
+            break;
+        }
+    }
+
+    assigningStats = yn.equals("n");
+} while (assigningStats);
+```
+</details>
